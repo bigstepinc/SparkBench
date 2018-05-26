@@ -1,2 +1,5 @@
 *.class
 *.log
+spark-warehouse
+.idea
+target

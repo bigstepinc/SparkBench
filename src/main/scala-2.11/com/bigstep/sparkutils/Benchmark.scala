@@ -20,7 +20,7 @@ object Benchmark {
     if (args.length != 3) {
       System.err.print(
         "Missing application startup params:\n" +
-        "\tgen <record_count> <output_dir>\n" +
+        "\tgenerate <record_count> <output_dir>\n" +
         "\tsort <input_dir> <output_dir>\n")
       System.exit(-1)
     }
@@ -30,7 +30,7 @@ object Benchmark {
     val t0 = System.nanoTime()
 
     args(0) match {
-      case "gen" => bench.generateRecords(args(1).toLong)
+      case "generate" => bench.generateRecords(args(1).toLong)
         .save(args(2))
       case "sort" => bench.load(args(1))
         .sortByValue()

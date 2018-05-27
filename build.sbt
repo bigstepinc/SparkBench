@@ -1,5 +1,5 @@
 
-name := "SparkBench"
+name := "com.bigstep.sparkutils.SparkBench"
 
 version := "1.0"
 
@@ -21,3 +21,30 @@ libraryDependencies += "org.apache.spark" %% "spark-mllib" % "2.3.0"
 libraryDependencies += "org.scalatest" %% "scalatest" % "3.0.5" % "test"
 
 mainClass in Compile := Some("com.bigstep.sparkutils.Benchmark")
+
+
+
+useGpg := true
+publishTo := Some("Sonatype Snapshots Nexus" at "https://oss.sonatype.org/content/repositories/snapshots")
+credentials += Credentials(Path.userHome / ".ivy2" / ".credentials")
+pomIncludeRepository := { _ => false }
+
+licenses := Seq("Apache License" -> url("https://www.apache.org/licenses/LICENSE-2.0"))
+
+homepage := Some(url("https://bigstep.com"))
+
+scmInfo := Some(
+  ScmInfo(
+    url("https://github.com/bigstepinc/SparkBench.git"),
+    "scm:git@github.com:bigstepinc/SparkBench.git"
+  )
+)
+
+developers := List(
+  Developer(
+    id    = "alexbordei",
+    name  = "Alex Bordei",
+    email = "---",
+    url   = url("http://bigstep.com")
+  )
+)

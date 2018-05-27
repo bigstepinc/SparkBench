@@ -3,3 +3,8 @@
 spark-warehouse
 .idea
 target
+metastore_db/
+metastore_db
+project/target
+project/project
+derby.log

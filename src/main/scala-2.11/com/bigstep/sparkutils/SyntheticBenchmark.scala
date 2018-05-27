@@ -18,11 +18,14 @@ class SyntheticBenchmark(dataFrame:DataFrame=null, options:Map[String,String] = 
   def options(opt:Map[String,String]): SyntheticBenchmark =
     SyntheticBenchmark.create(dataFrame, options)
 
+
   def generateRecords(rowCount:Long):SyntheticBenchmark =  {
 
+    val chars = 'A' to 'Z'
     val randValue = udf( (rowId:Long) => {
       val rnd = new scala.util.Random(rowId)
-      rnd.nextString(100)  //not exactly like the original terasort but very similar.
+      //rnd.nextString(100)  //not exactly like the original terasort but very similar.
+      (1 to 100).map( i => chars(rnd.nextInt(chars.length))).mkString
     })
 
     val df=spark.range(rowCount)

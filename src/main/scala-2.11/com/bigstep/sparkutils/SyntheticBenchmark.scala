@@ -1,5 +1,6 @@
 package com.bigstep.sparkutils
 
+import org.apache.log4j.LogManager
 import org.apache.spark.sql._
 import org.apache.spark.sql.functions._
 
@@ -11,6 +12,7 @@ import org.apache.spark.sql.functions._
   */
 class SyntheticBenchmark(dataFrame:DataFrame=null, options:Map[String,String] = Map()) {
 
+  val logger = LogManager.getLogger("com.bigstep.Benchmark")
   private val spark = SparkSession.getDefaultSession.get
 
   def getDF:DataFrame = dataFrame

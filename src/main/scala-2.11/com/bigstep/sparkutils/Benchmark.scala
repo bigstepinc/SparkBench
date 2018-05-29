@@ -38,9 +38,9 @@ object Benchmark {
     }
 
     val t1 = System.nanoTime()
-    val duration  = Duration(t1 - t0, NANOSECONDS)
+    val duration  = Duration(t1 - t0, NANOSECONDS).toSeconds
 
-    logger.info(s"Total execution time: ${duration}")
+    logger.info(s"Total execution time: ${duration}s")
 
   }
 

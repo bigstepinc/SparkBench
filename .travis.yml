@@ -1,3 +1,11 @@
 language: scala
 scala:
- - 2.11.12
+- 2.11.12
+deploy:
+  provider: releases
+  api_key:
+    secure: pBdaTy11Epa7M2CxOWkLR7UI4I4wXBnAS3ut1dFsF6N6yUv9TT2GG80M9c87krJ5XwBLMJukHkZKf5GiPKLsN++d3CjrHHpURoHNsqcGm6P2UQ0v7i6/Rpx7KLhmZ9VMcWur2JyeysTr3V7Umdr2VRh+uwiWrz8j/2GH21aPVD2/mb1A4r9wNlFbZ6uiTdcSsx+XGmlnSQCa+qqyBG+53tpMnn58esgi5KAf0X96q5p3SR/1D6EmjtyuHINUZeVTUXyARE0rIA4eFxihEoU2EpWGwW8ZRXoIHP8gIRH0nxFrBJoDaQq3/Kyleo1MVsSn/2O096tXhuSBP3jRdM5OncUgRPUV7XsOcnG8S2ifCtMrWkbeNHam1fInOkMWoi5ZmAA6m7oM5bsWoktoE3XClQWUjF69X9Lo2jYuh33BrfZWl1xadnaeHYWad5kZWxpsXkKeXE4ZBklYkvmJw6BiB6dSy+zZ2UhndE3vA2uGhyiAudSvMnnjHYDks1Z+WnPJEjG5O3l6P12wnNi2cOPZuJr69mUG8LpUxmDyVgr8HuYL8Ju8fqzLFyMOfhDVlaGqlhE/Stn+gnx6XHyP17reHcXFaxnahp1jmZg645EAC0DWCdhTBG9NGRDCu+eGEiMbuxTPtOKAVL8EBp6dqEcR+A8MyoyMLdxggP6+R8sLowg=
+  file_glob: true
+  file: target/scala-2.11/sparkbench*
+  on:
+    repo: bigstepinc/SparkBench

@@ -43,7 +43,10 @@ class SyntheticBenchmark(dataFrame:DataFrame=null, options:Map[String,String] = 
     new SyntheticBenchmark(dataFrame.orderBy(dataFrame("value")))
 
   def save(outputDirectory:String): Unit =
-    dataFrame.write.options(options).parquet(outputDirectory)
+    dataFrame
+      .repartition(spark.sparkContext.getExecutorMemoryStatus.size) //this repartitions to the number of workers to increase performance
+      .write.options(options)
+      .parquet(outputDirectory)
 
    def load(inputDirectory:String): SyntheticBenchmark =
     new SyntheticBenchmark(spark.read.options(options).parquet(inputDirectory))

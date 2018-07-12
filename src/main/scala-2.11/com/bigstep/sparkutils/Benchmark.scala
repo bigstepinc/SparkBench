@@ -9,7 +9,7 @@ import scala.concurrent.duration._
   * Terasort like benchmark that uses dataframes and parquet file formats for a more
   * realistic test scenario.
   * "Generates a dataframe with the following schema:
-  * key:binary(10), value:string(78) $record_count
+  * key:binary(10), value:string(78) record_count
   * records of 100 Bytes each (before compression). They are key-value pairs"
   */
 object Benchmark {

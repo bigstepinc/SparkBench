@@ -8,3 +8,5 @@ metastore_db
 project/target
 project/project
 derby.log
+sonatype.sbt
+project/plugins.sbt

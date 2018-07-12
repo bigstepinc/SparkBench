@@ -29,5 +29,6 @@ SyntheticBenchmark.load("/input").sortByValue().save("/output")
 libraryDependencies += "com.bigstep" %% "sparkbench_2.11" % "1.0" 
 ```
 or
-``` spark-submit --packages com.bigstep:sparkbench_2.11:1.0
+```
+spark-submit --packages com.bigstep:sparkbench_2.11:1.0
 ```

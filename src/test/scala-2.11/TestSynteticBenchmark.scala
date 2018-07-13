@@ -15,15 +15,16 @@ class TestSynteticBenchmark extends FlatSpec with BeforeAndAfter with Matchers {
 
     bench.getDF.count() should be(1000)
     bench.getDF.columns should contain theSameElementsAs Array("rowId", "value")
-    bench.getDF.takeAsList(1).get(0).getLong(0) should be(0)
-    bench.getDF.takeAsList(1).get(0).getString(1).length should be(100) //100 chars long
 
   }
 
   "Benchmark" should "be able to sort values" in {
 
-    bench.sortByValue().getDF.collect() should contain theSameElementsAs bench.getDF.orderBy("value").collect()
+    val sortedDF = bench.sortByValue().getDF.collect
 
+    sortedDF should contain theSameElementsAs bench.getDF.orderBy("value").collect()
+
+    sortedDF(0).getString(1).length should be(100) //100 chars long
   }
 
 
@@ -35,9 +36,7 @@ class TestSynteticBenchmark extends FlatSpec with BeforeAndAfter with Matchers {
 
     SyntheticBenchmark.load(path).getDF.collect() should contain theSameElementsAs bench.getDF.collect()
 
-
     FileUtils.deleteDirectory(new File(path))
-
   }
 
   "Benchmark" should "receive options" in {
@@ -48,4 +47,11 @@ class TestSynteticBenchmark extends FlatSpec with BeforeAndAfter with Matchers {
     FileUtils.deleteDirectory(new File(path))
   }
 
+
+  "Benchmark" should "support setting up partitions" in {
+
+    val bench2 =  SyntheticBenchmark.create().generateRecords(1000,14)
+    bench2.getDF.rdd.getNumPartitions should be (14)
+
+  }
 }

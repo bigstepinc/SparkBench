@@ -119,3 +119,11 @@ SyntheticBenchmark.create().generateRecords(1000).save("/input")
 //sort values and save them.
 SyntheticBenchmark.load("/input").sortByValue().save("/output")
 ```
+
+You can also setup options such as the compression codec:
+```
+SyntheticBenchmark.create()
+                  .options(Map("spark.io.compression.codec"->"snappy"))
+                  .generateRecords(1000)
+                  .save("/input")
+```

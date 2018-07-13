@@ -43,6 +43,4 @@ object Benchmark {
     logger.info(s"Total execution time: ${duration}s")
 
   }
-
-
 }

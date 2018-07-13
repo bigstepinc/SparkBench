@@ -9,3 +9,4 @@ deploy:
   file: target/scala-2.11/sparkbench*
   on:
     repo: bigstepinc/SparkBench
+    tags: true

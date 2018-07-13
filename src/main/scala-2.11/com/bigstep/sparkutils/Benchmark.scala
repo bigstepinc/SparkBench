@@ -17,20 +17,21 @@ object Benchmark {
   val logger = LogManager.getLogger("com.bigstep.Benchmark")
 
    def main(args: Array[String]): Unit = {
-    if (args.length != 3) {
+    if (args.length != 3 || args.length!=4) {
       System.err.print(
         "Missing application startup params:\n" +
-        "\tgenerate <record_count> <output_dir>\n" +
-        "\tsort <input_dir> <output_dir>\n")
+        "\tgenerate <record_count> <output_dir> [no_partitions=10]\n" +
+        "\tsort <input_dir> <output_dir> [no_partitions=10]\n")
       System.exit(-1)
     }
+
     val spark = SparkSession.builder.appName("SparkBenchmark").getOrCreate()
     val bench =  SyntheticBenchmark.create()
 
     val t0 = System.nanoTime()
 
     args(0) match {
-      case "generate" => bench.generateRecords(args(1).toLong)
+      case "generate" => bench.generateRecords(args(1).toLong, if (args.length==4) args(3).toInt else 10)
         .save(args(2))
       case "sort" => bench.load(args(1))
         .sortByValue()

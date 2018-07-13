@@ -20,8 +20,7 @@ class SyntheticBenchmark(dataFrame:DataFrame=null, options:Map[String,String] = 
   def options(opt:Map[String,String]): SyntheticBenchmark =
     SyntheticBenchmark.create(dataFrame, options)
 
-
-  def generateRecords(rowCount:Long):SyntheticBenchmark =  {
+  def generateRecords(rowCount:Long, noPartitions:Int=10):SyntheticBenchmark =  {
 
     val chars = 'A' to 'Z'
     val randValue = udf( (rowId:Long) => {
@@ -32,7 +31,7 @@ class SyntheticBenchmark(dataFrame:DataFrame=null, options:Map[String,String] = 
 
     val df=spark.range(rowCount)
                 .toDF("rowId")
-                .repartition(spark.sparkContext.getExecutorMemoryStatus.size-1) //this repartitions to the number of workers to increase performance
+                .repartition(noPartitions)
 
     val df2=df.withColumn("value", randValue(df("rowId")))
 

@@ -10,3 +10,6 @@ project/project
 derby.log
 sonatype.sbt
 project/plugins.sbt
+.DS_Store
+src/.DS_Store
+src/main/.DS_Store

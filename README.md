@@ -1,5 +1,5 @@
 # SparkBench [![Build Status](https://travis-ci.org/bigstepinc/SparkBench.svg?branch=master)](https://travis-ci.org/bigstepinc/SparkBench)
-Terasort-like benchmark for spark 2.x that uses dataframes, parquet etc for a more realistic load testing. It is both IO, network and CPU intensive. It also puts pressure on the temporary directories and other configuration settings.
+Terasort-like synthetic benchmark for Apache Spark 2.x that uses dataframes, parquet etc for a more realistic load testing. It is both IO, network and CPU intensive. It also puts pressure on the temporary directories and other configuration settings.
 
 You can download the binaries from the [Releases](https://github.com/bigstepinc/SparkBench/releases).
 
@@ -13,7 +13,10 @@ spark-submit sparkbench.jar sort <output_directory> <output_directory_sorted> [n
 
 - One million rows (1000000) is approximately 100MB of data.
 - Ten million rows (10000000) is approximately 1GB of data. 
-- Ten billion rows (10000000000) is approximately 1TB of data. 
+- Ten billion rows (10000000000) is approximately 1TB of data.
+
+For maximum performance you might want to set the number of partitions (noPartitions) to the number of executors in the cluster. For each partition a different parquet file will be generated. This allows you to control the size of the files being uploaded. Too many small files might generate listing delays but too few will only use part of the cluster for uploading and consume a lot of temporary space.
+Please note that the temporary/shuffle space (controlled with spark.local.dir, spark.externalBlockStore.baseDir, SPARK_WORKER_DIR, SPARK_LOCAL_DIRS) needs to be large enough and fast enough to support the process or will otherwise become a bottleneck before your CPU, network or main storage subsystem. It is recommended that you use local NVMe drives, perhaps as a stripped LVM volume, or a RAM disk.        
 
 To generate test data execute: 1m rows (100MB dataset):
 ```
@@ -24,10 +27,10 @@ To sort the test data:
 ~/spark-2.3.0-bin-hadoop2.7/bin/spark-submit sparkbench_2.11-1.0.jar sort /input /output
 ```
 
-Note: the current implementation forces a repartition with the numebr of partitions equal to the number of workers available in the cluster.
-
 ## Using with S3:
-Setup the conf/core-site.xml for S3:
+
+
+Setup the *conf/core-site.xml* for S3:
 ```
 <configuration>
 <property>
@@ -55,6 +58,10 @@ Setup the conf/core-site.xml for S3:
   <value>S3SignerType</value>
 </property>
 </configuration>
+```
+The S3 implementation uses the java temporary directory so you might want to set this to your fast scratch space dir in *conf/spark-env.conf*.
+```
+ SPARK_DAEMON_JAVA_OPTS=-Djava.io.tmpdir=/mnt/nvme1/java-tmp-dir"
 ```
 ... and generate and sort the data:
 ```

@@ -12,6 +12,7 @@ deploy:
   on:
     repo: bigstepinc/SparkBench
     tags: true
+  skip_cleanup: true
 branches:
   only:
   - master

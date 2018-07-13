@@ -2,7 +2,7 @@ import sbt.IvyConsole.Dependencies
 
 name := "SparkBench"
 organization:= "com.bigstep"
-version := "1.0"
+version := "1.0.14"
 description:="Terasort like native spark 2.0 implementation"
 scalaVersion := "2.11.12"
 

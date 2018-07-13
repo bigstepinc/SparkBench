@@ -106,6 +106,7 @@ spark-submit --packages com.bigstep:sparkbench_2.11:1.0
 ```
 ... and use in your program (Scala/Java):
 ```
+import com.bigstep.sparkutils._
 //generate values and save them
 SyntheticBenchmark.create().generateRecords(1000).save("/input")
 //sort values and save them.

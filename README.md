@@ -26,7 +26,7 @@ To sort the test data:
 
 Note: the current implementation forces a repartition with the numebr of partitions equal to the number of workers available in the cluster.
 
-##Using with S3:
+## Using with S3:
 Setup the conf/core-site.xml for S3:
 ```
 <configuration>
@@ -62,7 +62,7 @@ spark-submit --packages org.apache.hadoop:hadoop-aws:2.7.3,org.apache.hadoop:had
 spark-submit --packages org.apache.hadoop:hadoop-aws:2.7.3,org.apache.hadoop:hadoop-common:2.7.3 sparkbench_2.11-1.0.jar sort s3a://sparkgen-1m s3a://sparkgen-1m-sorted
 ```
 
-##Using with Google GCS:
+## Using with Google GCS:
 Setup the conf/core-site.xml in spark
 
 ```

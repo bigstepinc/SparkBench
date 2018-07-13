@@ -20,11 +20,11 @@ Please note that the temporary/shuffle space (controlled with spark.local.dir, s
 
 To generate test data execute: 1m rows (100MB dataset):
 ```
-~/spark-2.3.0-bin-hadoop2.7/bin/spark-submit sparkbench_2.11-1.0.jar generate 1000000 /input
+spark-submit sparkbench_2.11-1.0.jar generate 1000000 /input
 ```
 To sort the test data:
 ```
-~/spark-2.3.0-bin-hadoop2.7/bin/spark-submit sparkbench_2.11-1.0.jar sort /input /output
+spark-submit sparkbench_2.11-1.0.jar sort /input /output
 ```
 
 ## Using with S3:

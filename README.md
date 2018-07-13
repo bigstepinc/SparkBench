@@ -111,4 +111,3 @@ SyntheticBenchmark.create().generateRecords(1000).save("/input")
 //sort values and save them.
 SyntheticBenchmark.load("/input").sortByValue().save("/output")
 ```
-

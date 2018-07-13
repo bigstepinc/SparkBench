@@ -17,7 +17,7 @@ object Benchmark {
   val logger = LogManager.getLogger("com.bigstep.Benchmark")
 
    def main(args: Array[String]): Unit = {
-    if (args.length != 3 || args.length!=4) {
+    if (args.length != 3 && args.length!=4) {
       System.err.print(
         "Missing application startup params:\n" +
         "\tgenerate <record_count> <output_dir> [no_partitions=10]\n" +

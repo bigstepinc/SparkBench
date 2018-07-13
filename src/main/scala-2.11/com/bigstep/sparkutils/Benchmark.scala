@@ -25,7 +25,7 @@ object Benchmark {
       System.exit(-1)
     }
     val spark = SparkSession.builder.appName("SparkBenchmark").getOrCreate()
-    val bench = new SyntheticBenchmark()
+    val bench =  SyntheticBenchmark.create()
 
     val t0 = System.nanoTime()
 

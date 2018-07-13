@@ -32,7 +32,7 @@ class SyntheticBenchmark(dataFrame:DataFrame=null, options:Map[String,String] = 
 
     val df=spark.range(rowCount)
                 .toDF("rowId")
-                .repartition(spark.sparkContext.getExecutorMemoryStatus.size) //this repartitions to the number of workers to increase performance
+                .repartition(spark.sparkContext.getExecutorMemoryStatus.size-1) //this repartitions to the number of workers to increase performance
 
     val df2=df.withColumn("value", randValue(df("rowId")))
 

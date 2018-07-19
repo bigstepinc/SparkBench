@@ -134,3 +134,9 @@ SyntheticBenchmark.create()
                   .generateRecords(1000)
                   .save("/input")
 ```
+
+Note:  When writing to S3, GCS or any other object storage systems where the rename operation is expensive or your temporary directory is not fast enough you should use the following setting to:
+```
+spark.hadoop.mapreduce.fileoutputcommitter.algorithm.version 2
+```
+

@@ -99,8 +99,15 @@ Generate and sort data:
 spark-submit --packages com.google.cloud.bigdataoss:gcs-connector:1.8.1-hadoop2 sparkbench_2.11-1.0.jar generate 1000000 gs://sparkgen-1m
 spark-submit --packages com.google.cloud.bigdataoss:gcs-connector:1.8.1-hadoop2 sort gs://sparkgen-1m gs://sparkgen-1m-sorted
 ```
-
-
+Note: If you get something like this:
+```
+Exception in thread "main" java.lang.NoSuchMethodError: com.google.common.base.Splitter.splitToList(Ljava/lang/CharSequence;)Ljava/util/List;
+```
+Make sure to use the following configuration variables:
+```
+spark.driver.userClassPathFirst=true
+spark.executor.userClassPathFirst=true
+```
 ## Using programmatically
 To use in your project as a library use something like:
 
@@ -115,9 +122,9 @@ spark-submit --packages com.bigstep:sparkbench_2.11:1.0
 ```
 import com.bigstep.sparkutils._
 //generate values and save them
-SyntheticBenchmark.create().generateRecords(1000).save("/input")
+spark.time(SyntheticBenchmark.create().generateRecords(1000).save("/input"))
 //sort values and save them.
-SyntheticBenchmark.load("/input").sortByValue().save("/output")
+spark.time(SyntheticBenchmark.load("/input").sortByValue().save("/output"))
 ```
 
 You can also setup options such as the compression codec:

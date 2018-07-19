@@ -20,11 +20,11 @@ Please note that the temporary/shuffle space (controlled with spark.local.dir, s
 
 To generate test data execute: 1m rows (100MB dataset):
 ```
-spark-submit sparkbench_2.11-1.0.jar generate 1000000 /input
+spark-submit sparkbench_2.11-1.0.14.jar generate 1000000 /input
 ```
 To sort the test data:
 ```
-spark-submit sparkbench_2.11-1.0.jar sort /input /output
+spark-submit sparkbench_2.11-1.0.14.jar sort /input /output
 ```
 
 ## Using with S3:
@@ -65,8 +65,8 @@ The S3 implementation uses the java temporary directory so you might want to set
 ```
 ... and generate and sort the data:
 ```
-spark-submit --packages org.apache.hadoop:hadoop-aws:2.7.3,org.apache.hadoop:hadoop-common:2.7.3 sparkbench_2.11-1.0.jar generate 1000000 s3a://sparkgen-1m
-spark-submit --packages org.apache.hadoop:hadoop-aws:2.7.3,org.apache.hadoop:hadoop-common:2.7.3 sparkbench_2.11-1.0.jar sort s3a://sparkgen-1m s3a://sparkgen-1m-sorted
+spark-submit --packages org.apache.hadoop:hadoop-aws:2.7.3,org.apache.hadoop:hadoop-common:2.7.3 sparkbench_2.11-1.0.14.jar generate 1000000 s3a://sparkgen-1m
+spark-submit --packages org.apache.hadoop:hadoop-aws:2.7.3,org.apache.hadoop:hadoop-common:2.7.3 sparkbench_2.11-1.0.14.jar sort s3a://sparkgen-1m s3a://sparkgen-1m-sorted
 ```
 
 ## Using with Google GCS:
@@ -96,8 +96,8 @@ Setup the conf/core-site.xml in spark
 ```
 Generate and sort data:
 ```
-spark-submit --packages com.google.cloud.bigdataoss:gcs-connector:1.8.1-hadoop2 sparkbench_2.11-1.0.jar generate 1000000 gs://sparkgen-1m
-spark-submit --packages com.google.cloud.bigdataoss:gcs-connector:1.8.1-hadoop2 sort gs://sparkgen-1m gs://sparkgen-1m-sorted
+spark-submit --packages com.google.cloud.bigdataoss:gcs-connector:1.8.1-hadoop2 sparkbench_2.11-1.0.14.jar generate 1000000 gs://sparkgen-1m
+spark-submit --packages com.google.cloud.bigdataoss:gcs-connector:1.8.1-hadoop2 sparkbench_2.11-1.0.14.jar sort gs://sparkgen-1m gs://sparkgen-1m-sorted
 ```
 Note: If you get something like this:
 ```
@@ -112,11 +112,11 @@ spark.executor.userClassPathFirst=true
 To use in your project as a library use something like:
 
 ```
-libraryDependencies += "com.bigstep" %% "sparkbench_2.11" % "1.0" 
+libraryDependencies += "com.bigstep" %% "sparkbench_2.11" % "1.0.14" 
 ```
 or
 ```
-spark-submit --packages com.bigstep:sparkbench_2.11:1.0
+spark-submit --packages com.bigstep:sparkbench_2.11:1.0.14
 ```
 ... and use in your program (Scala/Java):
 ```
